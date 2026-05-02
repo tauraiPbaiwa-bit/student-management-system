@@ -5,7 +5,7 @@ import re
 from datetime import datetime
 import csv
 
-# ---------------- VALIDATION ----------------
+
 def validate_inputs(roll, name, dob):
     if not roll.isdigit():
         messagebox.showerror("Error", "Roll must be numeric")
@@ -29,8 +29,6 @@ def clear_fields():
     entry_name.delete(0, tk.END)
     entry_dob.delete(0, tk.END)
 
-
-# ---------------- CRUD ----------------
 def add_student():
     roll = entry_roll.get()
     name = entry_name.get()
@@ -174,15 +172,11 @@ def export_csv():
 
     messagebox.showinfo("Export", "Data exported to students.csv")
 
-
-# ---------------- UI ----------------
 root = tk.Tk()
 root.title("Student Management System")
 root.geometry("950x620")
 root.configure(bg="#e6cfd8")  # baby pink background
 
-
-# ---------- BUTTON WITH HOT PINK BORDER ----------
 def create_pink_button(parent, text, command):
     border = tk.Frame(parent, bg="#ff69b4", padx=1.5, pady=1.5)
     btn = tk.Button(border,
@@ -223,8 +217,6 @@ btn_row.grid(row=3, column=0, columnspan=2, pady=10)
 create_pink_button(btn_row, "Add Student", add_student).pack(side=tk.LEFT, padx=10)
 create_pink_button(btn_row, "Update Student", update_student).pack(side=tk.LEFT, padx=10)
 
-
-# ---------- SEARCH ----------
 frame_search = tk.Frame(root, bg="#e6cfd8")
 frame_search.pack(pady=5)
 
@@ -236,8 +228,6 @@ entry_search.pack(side=tk.LEFT, padx=5)
 create_pink_button(frame_search, "Go", search_student).pack(side=tk.LEFT, padx=5)
 create_pink_button(frame_search, "Refresh", view_students).pack(side=tk.LEFT)
 
-
-# ---------- TABLE CARD ----------
 frame_table = tk.Frame(root, bg="#d9d9d9", padx=10, pady=10)
 frame_table.pack(pady=15)
 
@@ -257,7 +247,6 @@ scrollbar.pack(side=tk.RIGHT, fill=tk.Y)
 tree.bind("<<TreeviewSelect>>", select_student)
 
 
-# ---------- ACTION BUTTONS (INCLUDING EXPORT CSV) ----------
 frame_action = tk.Frame(root, bg="#e6cfd8")
 frame_action.pack(pady=15)
 
@@ -267,7 +256,5 @@ create_pink_button(frame_action, "Delete Student", delete_student)\
 create_pink_button(frame_action, "Export CSV", export_csv)\
     .pack(side=tk.LEFT, padx=10)
 
-
-# ---------- LOAD ----------
 view_students()
 root.mainloop()
